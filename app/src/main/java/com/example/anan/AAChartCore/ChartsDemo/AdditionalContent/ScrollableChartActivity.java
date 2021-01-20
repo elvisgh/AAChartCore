@@ -20,12 +20,19 @@ import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AASubtitle;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AATitle;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAXAxis;
 import com.example.anan.AAChartCore.AAChartCoreLib.AATools.AAJSStringPurer;
+import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.DBUtil;
+import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.Game;
 import com.example.anan.AAChartCore.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ScrollableChartActivity extends AppCompatActivity {
     private AAChartView aaChartView1;
     private AAChartModel aaChartModel;
     private AAOptions aaOptions;
+    Object[][] datas = new Object[10][];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,21 @@ public class ScrollableChartActivity extends AppCompatActivity {
         }
 
         aaChartView1.aa_drawChartWithChartOptions(aaOptions);
+
+        //total score
+        List<String> registerdPlayers = new ArrayList<>(Arrays.asList("A", "B", "C"));
+
+
+        int row = 0;
+        for (String player : registerdPlayers) {
+            List<Game> games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer(player);
+
+            int totalScore = 0;
+            for (Game game : games) {
+                totalScore += game.getScore_12();
+            }
+            datas[row++] = new Object[]{player, totalScore};
+        }
     }
 
 
@@ -111,28 +133,29 @@ public class ScrollableChartActivity extends AppCompatActivity {
                     "Source: <a href=\"https://highcharts.uservoice.com/forums/55896-highcharts-javascript-api\">UserVoice</a>");
 
             AASeriesElement element = new AASeriesElement()
-                    .data(new Object[][]{
-                            {"Gantt chart", 1000},
-                            {"Autocalculation and plotting of trend lines", 575},
-                            {"Allow navigator to have multiple data series", 523},
-                            {"Implement dynamic font size", 427},
-                            {"Multiple axis alignment control", 399},
-                            {"Stacked area (spline etc) in irregular datetime series", 309},
-                            {"Adapt chart height to legend height", 278},
-                            {"Export charts in excel sheet", 239},
-                            {"Toggle legend box", 235},
-                            {"Venn Diagram", 203},
-                            {"Add ability to change Rangeselector position", 182},
-                            {"Draggable legend box", 157},
-                            {"Sankey Diagram", 149},
-                            {"Add Navigation bar for Y-Axis in Highstock", 144},
-                            {"Grouped x-axis", 143},
-                            {"ReactJS plugin", 137},
-                            {"3D surface charts", 134},
-                            {"Draw lines over a stock chart, for analysis purpose", 118},
-                            {"Data module for database tables", 118},
-                            {"Draggable points", 117}
-                    });
+//                    .data(new Object[][]{
+//                            {"Gantt chart", 1000},
+//                            {"Autocalculation and plotting of trend lines", 575},
+//                            {"Allow navigator to have multiple data series", 523},
+//                            {"Implement dynamic font size", 427},
+//                            {"Multiple axis alignment control", 399},
+//                            {"Stacked area (spline etc) in irregular datetime series", 309},
+//                            {"Adapt chart height to legend height", 278},
+//                            {"Export charts in excel sheet", 239},
+//                            {"Toggle legend box", 235},
+//                            {"Venn Diagram", 203},
+//                            {"Add ability to change Rangeselector position", 182},
+//                            {"Draggable legend box", 157},
+//                            {"Sankey Diagram", 149},
+//                            {"Add Navigation bar for Y-Axis in Highstock", 144},
+//                            {"Grouped x-axis", 143},
+//                            {"ReactJS plugin", 137},
+//                            {"3D surface charts", 134},
+//                            {"Draw lines over a stock chart, for analysis purpose", 118},
+//                            {"Data module for database tables", 118},
+//                            {"Draggable points", 117}
+//                    });
+                    .data(datas);
 
             AAOptions aaOptions = new AAOptions()
                     .chart(new AAChart()
@@ -232,32 +255,4 @@ public class ScrollableChartActivity extends AppCompatActivity {
             AASeriesElement element4 = new AASeriesElement()
                     .name("London")
                     .lineWidth(7f)
-                    .data(new Object[]{130, 350, 160, 310, 250, 268,});
-
-            aaChartModel
-                    .animationType(AAChartAnimationType.SwingFromTo)
-                    .series(new AASeriesElement[]{element1, element2, element3, element4});
-
-        }
-    }
-
-
-    private AADataElement[] configureSeriesDataArray() {
-        int maxRange = 388;
-        AADataElement[] numberArr1 = new AADataElement[maxRange];
-
-        double y1;
-        int max = 38, min = 1;
-        int random = (int) (Math.random() * (max - min) + min);
-        for (int i = 0; i < maxRange; i++) {
-            y1 = Math.sin(random * (i * Math.PI / 180)) + i * 2 * 0.01;
-            AADataElement aaDataElement = new AADataElement()
-                    .y((float) y1);
-
-            numberArr1[i] = aaDataElement;
-        }
-
-        return numberArr1;
-    }
-
-}
+                    .data(n

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/display1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/player_1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:id="@+id/avatar_1"
+                android:layout_width="62dp"
+                android:layout_height="90dp"
+                android:background="@drawable/player"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/name_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=""
+                android:completionThreshold="2"
+                android:completionHint="输入搜索内容" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/player_2"
+            android:layout_toEndOf="@id/player_1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/avatar_2"
+                android:layout_width="62dp"
+                android:layout_height="90dp"
+                android:background="@drawable/player"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/name_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=""
+                android:completionThreshold="2"
+                android:completionHint="输入搜索内容" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/score_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="00"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint=" : "
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/score_34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="00"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/player_3"
+            android:layout_toStartOf="@id/player_4"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/avatar_3"
+                android:layout_width="62dp"
+                android:layout_height="90dp"
+                android:background="@drawable/player"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/name_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=""
+                android:completionThreshold="2"
+                android:completionHint="输入搜索内容" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/player_4"
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/avatar_4"
+                android:layout_width="62dp"
+                android:layout_height="90dp"
+                android:background="@drawable/player"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/name_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=""
+                android:completionThreshold="2"
+                android:completionHint="输入搜索内容" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/display2"
+        android:layout_below="@+id/display1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="RUN"/>
+
+
+</RelativeLayout>

@@ -423,27 +423,28 @@ public class JSFormatterFunctionActivity extends AppCompatActivity {
                 .chartType(AAChartType.Column)
                 .legendEnabled(false)//隐藏图例(底部可点按的小圆点)
                 .stacking(AAChartStackingType.Normal)
-                .categories(new String[]{"Apples", "Oranges", "Pears","Grapes","Bananas",})
+                .categories(new String[]{"Apples", "Oranges", "Pears","Grapes","Bananas", "Apples", "Oranges", "Pears","Grapes","Bananas"
+                ,"Apples", "Oranges", "Pears","Grapes","Bananas", "Apples", "Oranges", "Pears","Grapes","Bananas"})
                 .dataLabelsEnabled(true)
                 .series(new AASeriesElement[] {
                                 new AASeriesElement()
                                         .name("John")
-                                        .data(new Object[]{5,3,4,7,2,})
+                                        .data(new Object[]{5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2})
                                         .stack("male")
-                                ,
-                                new AASeriesElement()
-                                        .name("Joe")
-                                        .data(new Object[]{3,4,4,2,5,})
-                                        .stack("male")
+//                                ,
+//                                new AASeriesElement()
+//                                        .name("Joe")
+//                                        .data(new Object[]{3,4,4,2,5,})
+//                                        .stack("male")
                                 ,
                                 new AASeriesElement()
                                         .name("Jane")
-                                        .data(new Object[]{2,5,6,2,1,})
+                                        .data(new Object[]{2,5,6,2,1,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2})
                                         .stack("female")
                                 ,
                                 new AASeriesElement()
                                         .name("Janet")
-                                        .data(new Object[]{3,0,4, 4,3,})
+                                        .data(new Object[]{3,0,4, 4,3,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2})
                                         .stack("female")
                                 ,
                         }
@@ -824,14 +825,4 @@ public class JSFormatterFunctionActivity extends AppCompatActivity {
 
     private String javaScriptArrayStringWithJavaArray(Object[] javaArray) {
         String originalJsArrStr = "";
-        for (int i = 0; i< javaArray.length; i++) {
-            Object element = javaArray[i];
-            originalJsArrStr = originalJsArrStr + "'" + element.toString() +  "',";
-        }
-
-        String finalJSArrStr = "[" + originalJsArrStr + "]";
-
-        return finalJSArrStr;
-    }
-
-}
+        for 
