@@ -30,7 +30,7 @@ public class H2HCoupleFragment extends Fragment {
     GameRecordAdapter gameRecordAdapter;
 
     private static final String[] COUNTRIES = new String[]{
-            "A","B","C","D"
+            "杰斯","露露","罗乾","云儿"
     };
 
     TextView score_12, score_34;

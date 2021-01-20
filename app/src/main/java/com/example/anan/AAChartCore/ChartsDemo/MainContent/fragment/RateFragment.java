@@ -38,9 +38,9 @@ public class RateFragment extends Fragment {
 
     private AAOptions customStackedAndGroupedColumnChartTooltip() {
         AAChartModel aaChartModel = new AAChartModel()
-                .title("Total fruit consumption, grouped by gender")
-                .subtitle("stacked and grouped")
-                .yAxisTitle("Number of fruits")
+                .title("2021年互怼羽毛球群胜率排行榜")
+                .subtitle("")
+                .yAxisTitle("")
                 .chartType(AAChartType.Column)
                 .legendEnabled(false)//隐藏图例(底部可点按的小圆点)
                 .stacking(AAChartStackingType.Normal)
@@ -48,15 +48,12 @@ public class RateFragment extends Fragment {
                         new AAScrollablePlotArea()
                                 .minWidth(1000)
                 )
-                .categories(new String[]{"Apples", "Oranges", "Pears","Grapes","Bananas", "Apples", "Oranges", "Pears","Grapes","Bananas"
-                        ,"Apples", "Oranges", "Pears","Grapes","Bananas", "Apples", "Oranges", "Pears","Grapes","Bananas"
-                        ,"Apples", "Oranges", "Pears","Grapes","Bananas", "Apples", "Oranges", "Pears","Grapes","Bananas"
-                        ,"Apples", "Oranges", "Pears","Grapes","Bananas", "Apples", "Oranges", "Pears","Grapes","Bananas"})
+                .categories(new String[]{"杰斯","露露","罗乾","云儿"})
                 .dataLabelsEnabled(true)
                 .series(new AASeriesElement[] {
                                 new AASeriesElement()
-                                        .name("John")
-                                        .data(new Object[]{5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2})
+                                        .name("正负值")
+                                        .data(new Object[]{5,3,4,7,2})
                                         .stack("male")
 //                                ,
 //                                new AASeriesElement()
@@ -65,13 +62,13 @@ public class RateFragment extends Fragment {
 //                                        .stack("male")
                                 ,
                                 new AASeriesElement()
-                                        .name("Jane")
-                                        .data(new Object[]{2,5,6,2,1,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2})
+                                        .name("胜局")
+                                        .data(new Object[]{2,5,6,2})
                                         .stack("female")
                                 ,
                                 new AASeriesElement()
-                                        .name("Janet")
-                                        .data(new Object[]{3,0,4, 4,3,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2,5,3,4,7,2})
+                                        .name("败局")
+                                        .data(new Object[]{3,0,4,4})
                                         .stack("female")
                                 ,
                         }

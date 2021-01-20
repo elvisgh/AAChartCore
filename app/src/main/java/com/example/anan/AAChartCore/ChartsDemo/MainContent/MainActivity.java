@@ -15,12 +15,12 @@ import android.widget.ListView;
 
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartType;
 import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.DoubleChartsLinkedWorkActivity;
-import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.JSFormatterFunctionActivity;
-import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.DrawChartWithAAOptionsActivity;
+//import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.JSFormatterFunctionActivity;
+//import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.DrawChartWithAAOptionsActivity;
 import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.EvaluateJSStringFunctionActivity;
 import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.HideOrShowChartSeriesActivity;
 import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.OnlyRefreshChartDataActivity;
-import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.ScrollableChartActivity;
+//import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.ScrollableChartActivity;
 import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.DBUtil;
 import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.Game;
 import com.example.anan.AAChartCore.R;
@@ -44,7 +44,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static final String  kChartTypeKey = "chartType";
+    private static final String kChartTypeKey = "chartType";
 
     private String[] data = {
             /*基础类型图表*/
@@ -305,38 +305,38 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapter, View view, int position,
                                     long id) {
                 System.out.println(position);
-                if (position <= 7 ) {/*基础类型图表*/
+                if (position <= 7) {/*基础类型图表*/
                     goToCommonChartActivity(position);
                 } else if (position <= 20) {/*特殊类型图表*/
                     goToSpecialChartActivity(position);
                 } else if (position <= 29) { /*Mixed Chart---混合图*/
-                    goToMixedChartActivity(position);
-                } else if (position <= 47)  {/*自定义样式图表*/
-                    goToCustomStyleChartActivity(position);
-                } else if (position <= 65){/*使用AAOptions绘制图表*/
-                    goToDrawChartWithAAOptionsActivity(position);
-                } else if (position <= 74 ) { /*即时刷新📈📊图表数据*/
-                    goToOnlyRefreshChartDataActivity(position);
+//                    goToMixedChartActivity(position);
+                } else if (position <= 47) {/*自定义样式图表*/
+//                    goToCustomStyleChartActivity(position);
+                } else if (position <= 65) {/*使用AAOptions绘制图表*/
+//                    goToDrawChartWithAAOptionsActivity(position);
+                } else if (position <= 74) { /*即时刷新📈📊图表数据*/
+//                    goToOnlyRefreshChartDataActivity(position);
                 } else if (position <= 87) {/*formatter js function*/
-                    goToCustomTooltipWithJSFunctionActivity(position);
-                } else if (position <= 89)  { /*eval JS Function*/
-                    goToEvaluateJSStringFunctionActivity(position);
-                } else if (position <= 91){ /*Double Charts Linked Work*/
-                    goToDoubleChartsLinkedWorkActivity(position);
+//                    goToCustomTooltipWithJSFunctionActivity(position);
+                } else if (position <= 89) { /*eval JS Function*/
+//                    goToEvaluateJSStringFunctionActivity(position);
+                } else if (position <= 91) { /*Double Charts Linked Work*/
+//                    goToDoubleChartsLinkedWorkActivity(position);
                 } else if (position <= 98) {/*Scrollable Chart---可滚动图表*/
-                    gotoScrollableChartActivity(position);
+//                    gotoScrollableChartActivity(position);
                 }
             }
 
         });
 
-        readExcel(Environment.getExternalStorageDirectory() + File.separator + "game.xlsx");
+//        readExcel(Environment.getExternalStorageDirectory() + File.separator + "game.xlsx");
     }
 
     void goToCommonChartActivity(int position) {
         Intent intent = new Intent(this, BasicChartActivity.class);
         intent.putExtra(kChartTypeKey, chartTypeArr[position]);
-        intent.putExtra("position",position);
+        intent.putExtra("position", position);
 
         List<Game> games = new ArrayList<>();
         games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer("A");
@@ -354,17 +354,18 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+}
 
-    void goToCustomStyleChartActivity(int position) {
-        Intent intent = new Intent(this, CustomStyleChartActivity.class);
-        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
-
-        startActivity(intent);
-    }
-
-    void goToMixedChartActivity(int position) {
-        Intent intent = new Intent(this, MixedChartActivity.class);
-        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
-
-        List<Game> games = new ArrayList<>();
-        games = DBUti
+//    void goToCustomStyleChartActivity(int position) {
+//        Intent intent = new Intent(this, CustomStyleChartActivity.class);
+//        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+//
+//        startActivity(intent);
+//    }
+//
+//    void goToMixedChartActivity(int position) {
+//        Intent intent = new Intent(this, MixedChartActivity.class);
+//        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+//
+//        List<Game> games = new ArrayList<>();
+//        games = DBUti

@@ -57,7 +57,7 @@ public class TotalPointsFragment extends Fragment {
         aaChartView1.aa_drawChartWithChartOptions(aaOptions);
 
         //total score
-        List<String> registerdPlayers = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
+        List<String> registerdPlayers = new ArrayList<>(Arrays.asList("杰斯","露露","罗乾","云儿"));
 
 
         int row = 0;
@@ -138,7 +138,9 @@ public class TotalPointsFragment extends Fragment {
     private void configureColumnChartAndBarChartStyle() {
         if (aaChartModel.chartType.equals(AAChartType.Bar) ) {
             String pureJSStr = AAJSStringPurer.pureJavaScriptFunctionString(
-                    "Source: <a href=\"https://highcharts.uservoice.com/forums/55896-highcharts-javascript-api\">UserVoice</a>");
+//                    "Source: <a href=\"https://highcharts.uservoice.com/forums/55896-highcharts-javascript-api\">UserVoice</a>"
+                    "数据来源：互怼混双羽毛球群"
+            );
 
             AASeriesElement element = new AASeriesElement()
 //                    .data(new Object[][]{
@@ -173,7 +175,7 @@ public class TotalPointsFragment extends Fragment {
                                             .minHeight(900)
                             ))
                     .title(new AATitle()
-                            .text("Most popular ideas by April 2016"))
+                            .text("2021年互怼羽毛球群积分排行榜"))
                     .subtitle(new AASubtitle()
                             .text(pureJSStr))
                     .xAxis(new AAXAxis()

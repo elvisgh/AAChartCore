@@ -3,20 +3,20 @@
     <item
         android:id="@+id/bottom_single"
         android:icon="@drawable/navigator_h2h_single_selector"
-        android:title="single" />
+        android:title="单挑" />
 
     <item
         android:id="@+id/bottom_couple"
         android:icon="@drawable/navigator_h2h_couple_selector"
-        android:title="couple" />
+        android:title="双打" />
 
     <item
         android:id="@+id/bottom_points"
         android:icon="@drawable/navigator_total_score_selector"
-        android:title="total" />
+        android:title="积分" />
 
     <item
         android:id="@+id/bottom_rate"
         android:icon="@drawable/navigator_rate_selector"
-        android:title="rate" />
+        android:title="胜率" />
 </menu>

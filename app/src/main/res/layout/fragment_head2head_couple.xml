@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@id/couple_game_separator"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     android:hint="00"
                     tools:ignore="HardcodedText" />
 
@@ -89,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     android:hint=" : "
                     tools:ignore="HardcodedText" />
 
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/couple_game_separator"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     android:hint="00"
                     tools:ignore="HardcodedText" />
             </RelativeLayout>
@@ -113,7 +113,7 @@
                     android:id="@+id/couple_game_run"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RUN"/>
+                    android:text="比分"/>
             </RelativeLayout>
         </RelativeLayout>
 
