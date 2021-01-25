@@ -1,13 +1,8 @@
 package com.example.anan.AAChartCore.ChartsDemo.MainContent;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,36 +10,17 @@ import android.widget.ListView;
 
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartType;
 import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.DoubleChartsLinkedWorkActivity;
-//import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.JSFormatterFunctionActivity;
-//import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.DrawChartWithAAOptionsActivity;
+import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.JSFormatterFunctionActivity;
+import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.DrawChartWithAAOptionsActivity;
 import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.EvaluateJSStringFunctionActivity;
 import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.HideOrShowChartSeriesActivity;
 import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.OnlyRefreshChartDataActivity;
-//import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.ScrollableChartActivity;
-import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.DBUtil;
-import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.Game;
+import com.example.anan.AAChartCore.ChartsDemo.AdditionalContent.ScrollableChartActivity;
 import com.example.anan.AAChartCore.R;
-
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.CellValue;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static final String kChartTypeKey = "chartType";
+    private static final String  kChartTypeKey = "chartType";
 
     private String[] data = {
             /*基础类型图表*/
@@ -279,20 +255,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            int REQUEST_CODE_CONTACT = 101;
-            String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-            //验证是否许可权限
-            for (String str : permissions) {
-                if (this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
-                    //申请权限
-                    this.requestPermissions(permissions, REQUEST_CODE_CONTACT);
-                }
-            }
-        }
-
-        DBUtil.GameDBManager.initialize(getApplicationContext());
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 MainActivity.this, android.R.layout.simple_list_item_1, data);
         ListView listView = findViewById(R.id.list);
@@ -305,45 +267,36 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapter, View view, int position,
                                     long id) {
                 System.out.println(position);
-                if (position <= 7) {/*基础类型图表*/
+                if (position <= 7 ) {/*基础类型图表*/
                     goToCommonChartActivity(position);
                 } else if (position <= 20) {/*特殊类型图表*/
                     goToSpecialChartActivity(position);
                 } else if (position <= 29) { /*Mixed Chart---混合图*/
-//                    goToMixedChartActivity(position);
-                } else if (position <= 47) {/*自定义样式图表*/
-//                    goToCustomStyleChartActivity(position);
-                } else if (position <= 65) {/*使用AAOptions绘制图表*/
-//                    goToDrawChartWithAAOptionsActivity(position);
-                } else if (position <= 74) { /*即时刷新📈📊图表数据*/
-//                    goToOnlyRefreshChartDataActivity(position);
+                    goToMixedChartActivity(position);
+                } else if (position <= 47)  {/*自定义样式图表*/
+                    goToCustomStyleChartActivity(position);
+                } else if (position <= 65){/*使用AAOptions绘制图表*/
+                    goToDrawChartWithAAOptionsActivity(position);
+                } else if (position <= 74 ) { /*即时刷新📈📊图表数据*/
+                    goToOnlyRefreshChartDataActivity(position);
                 } else if (position <= 87) {/*formatter js function*/
-//                    goToCustomTooltipWithJSFunctionActivity(position);
-                } else if (position <= 89) { /*eval JS Function*/
-//                    goToEvaluateJSStringFunctionActivity(position);
-                } else if (position <= 91) { /*Double Charts Linked Work*/
-//                    goToDoubleChartsLinkedWorkActivity(position);
+                    goToCustomTooltipWithJSFunctionActivity(position);
+                } else if (position <= 89)  { /*eval JS Function*/
+                    goToEvaluateJSStringFunctionActivity(position);
+                } else if (position <= 91){ /*Double Charts Linked Work*/
+                    goToDoubleChartsLinkedWorkActivity(position);
                 } else if (position <= 98) {/*Scrollable Chart---可滚动图表*/
-//                    gotoScrollableChartActivity(position);
+                    gotoScrollableChartActivity(position);
                 }
             }
 
         });
-
-//        readExcel(Environment.getExternalStorageDirectory() + File.separator + "game.xlsx");
     }
 
     void goToCommonChartActivity(int position) {
         Intent intent = new Intent(this, BasicChartActivity.class);
         intent.putExtra(kChartTypeKey, chartTypeArr[position]);
-        intent.putExtra("position", position);
-
-        List<Game> games = new ArrayList<>();
-        games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer("A");
-
-        for (Game game : games) {
-            Log.i("xxx", game.toString());
-        }
+        intent.putExtra("position",position);
 
         startActivity(intent);
     }
@@ -354,18 +307,71 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-}
 
-//    void goToCustomStyleChartActivity(int position) {
-//        Intent intent = new Intent(this, CustomStyleChartActivity.class);
-//        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
-//
-//        startActivity(intent);
-//    }
-//
-//    void goToMixedChartActivity(int position) {
-//        Intent intent = new Intent(this, MixedChartActivity.class);
-//        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
-//
-//        List<Game> games = new ArrayList<>();
-//        games = DBUti
+    void goToCustomStyleChartActivity(int position) {
+        Intent intent = new Intent(this, CustomStyleChartActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+
+        startActivity(intent);
+    }
+
+    void goToMixedChartActivity(int position) {
+        Intent intent = new Intent(this, MixedChartActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+
+        startActivity(intent);
+    }
+
+    void goToDrawChartWithAAOptionsActivity(int position) {
+        Intent intent = new Intent(this, DrawChartWithAAOptionsActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+
+        startActivity(intent);
+    }
+
+    void goToOnlyRefreshChartDataActivity(int position) {
+        Intent intent = new Intent(this, OnlyRefreshChartDataActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+
+        startActivity(intent);
+    }
+
+    void goToCustomTooltipWithJSFunctionActivity(int position) {
+        Intent intent = new Intent(this, JSFormatterFunctionActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+
+        startActivity(intent);
+    }
+
+    void goToEvaluateJSStringFunctionActivity(int position) {
+        Intent intent = new Intent(this, EvaluateJSStringFunctionActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+
+        startActivity(intent);
+    }
+
+    void goToHideOrShowChartSeriesActivity(int position) {
+        Intent intent = new Intent(this, HideOrShowChartSeriesActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+
+        startActivity(intent);
+    }
+
+    void goToDoubleChartsLinkedWorkActivity(int position) {
+        Intent intent = new Intent(this, DoubleChartsLinkedWorkActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+
+        startActivity(intent);
+    }
+
+    void gotoScrollableChartActivity(int position) {
+        Intent intent = new Intent(this, ScrollableChartActivity.class);
+        intent.putExtra(kChartTypeKey, chartTypeArr[position]);
+        intent.putExtra("position",position);
+        startActivity(intent);
+    }
+
+    }
+
+
+

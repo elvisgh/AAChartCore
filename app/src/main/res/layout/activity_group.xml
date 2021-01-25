@@ -7,11 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".ChartsDemo.MainContent.LoginActivity">
 
+    <include android:id="@+id/activity_title"
+        layout="@layout/include_activity_title"/>
+
     <FrameLayout
         android:id="@+id/activity_group_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="@android:dimen/app_icon_size"
+        android:layout_marginBottom="@dimen/qb_px_60"
         app:layout_constraintBottom_toTopOf="@id/group_bottom_navigation" />
 
     <android.support.design.widget.BottomNavigationView

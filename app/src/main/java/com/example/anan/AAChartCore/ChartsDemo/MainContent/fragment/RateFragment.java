@@ -39,7 +39,7 @@ public class RateFragment extends Fragment {
     private AAOptions customStackedAndGroupedColumnChartTooltip() {
         AAChartModel aaChartModel = new AAChartModel()
                 .title("2021年互怼羽毛球群胜率排行榜")
-                .subtitle("")
+                .subtitle("红色：净胜分（胜+1，败-1）黄色：胜局 蓝色：败局")
                 .yAxisTitle("")
                 .chartType(AAChartType.Column)
                 .legendEnabled(false)//隐藏图例(底部可点按的小圆点)

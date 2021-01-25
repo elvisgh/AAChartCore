@@ -71,15 +71,10 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game{" +
-                "player_1='" + player_1 + '\'' +
-                ", player_2='" + player_2 + '\'' +
-                ", player_3='" + player_3 + '\'' +
-                ", player_4='" + player_4 + '\'' +
-                ", score_12=" + score_12 +
-                ", score_34=" + score_34 +
-                ", gameDate=" + gameDate +
-                '}';
+        return player_1 + "/" + player_2 + " " +
+                score_12 + " : " + score_34 + " " +
+                player_3 + "/" + player_4 + " " +
+                gameDate;
     }
 
     String player_1;

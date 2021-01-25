@@ -11,22 +11,24 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
-        <LinearLayout
             android:id="@+id/single_game_player_1"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true">
+            android:paddingEnd="@dimen/qb_px_10"
+            android:layout_toStartOf="@+id/single_game_score"
+            tools:ignore="RtlSymmetry">
 
-            <ImageView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/qb_px_30"/>
+
+            <com.example.anan.AAChartCore.ChartsDemo.MainContent.ui.RoundImageView
                 android:id="@+id/single_game_avatar_1"
-                android:layout_width="62dp"
-                android:layout_height="90dp"
-                android:background="@drawable/player"/>
+                android:scaleType="fitXY"
+                android:layout_width="@dimen/qb_px_60"
+                android:layout_height="@dimen/qb_px_90"
+                android:src="@drawable/player"/>
 
             <AutoCompleteTextView
                 android:id="@+id/single_game_name_1"
@@ -40,71 +42,67 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/single_game_score"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/single_game_score"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/single_game_score_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/single_game_separator"
-                    android:textSize="30sp"
-                    android:hint="00"
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/single_game_separator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="30sp"
-                    android:hint=" : "
-                    tools:ignore="HardcodedText" />
-
-                <TextView
-                    android:id="@+id/single_game_score_34"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/single_game_separator"
-                    android:textSize="30sp"
-                    android:hint="00"
-                    tools:ignore="HardcodedText" />
-            </RelativeLayout>
-
-            <RelativeLayout
+            <TextView
+                android:id="@+id/single_game_score_12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/single_game_score"
-                android:layout_centerHorizontal="true">
+                android:layout_toStartOf="@id/single_game_separator"
+                android:textSize="30sp"
+                android:hint="00"
+                tools:ignore="HardcodedText" />
 
-                <Button
-                    android:id="@+id/single_game_run"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="比分"/>
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/single_game_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="30sp"
+                android:hint=" : "
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/single_game_score_34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/single_game_separator"
+                android:textSize="30sp"
+                android:hint="00"
+                tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/single_game_run"
+                android:layout_below="@+id/single_game_separator"
+                android:layout_width="@dimen/qb_px_100"
+                android:layout_height="wrap_content"
+                android:text="比分"
+                tools:ignore="HardcodedText" />
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/single_game_player_4"
-            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/single_game_score"
+            android:paddingStart="@dimen/qb_px_10"
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="RtlSymmetry">
 
-            <ImageView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/qb_px_30"/>
+
+            <com.example.anan.AAChartCore.ChartsDemo.MainContent.ui.RoundImageView
                 android:id="@+id/single_game_avatar_4"
-                android:layout_width="62dp"
-                android:layout_height="90dp"
-                android:background="@drawable/player"/>
+                android:layout_width="@dimen/qb_px_60"
+                android:layout_height="@dimen/qb_px_90"
+                android:scaleType="fitXY"
+                android:src="@drawable/player"/>
 
             <AutoCompleteTextView
                 android:id="@+id/single_game_name_4"

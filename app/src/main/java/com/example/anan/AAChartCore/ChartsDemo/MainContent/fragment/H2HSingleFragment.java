@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,8 +47,8 @@ public class H2HSingleFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        List<Game> games = new ArrayList<>();
-        games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer("A");
+//        List<Game> games = new ArrayList<>();
+//        games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer("A");
 
         gameRecordAdapter = new GameRecordAdapter(data, getActivity());
         listView = (ListView)getActivity().findViewById(R.id.single_game_records);
@@ -63,6 +64,22 @@ public class H2HSingleFragment extends Fragment {
 
         score_12 = (TextView)getActivity().findViewById(R.id.single_game_score_12);
         score_34 = (TextView)getActivity().findViewById(R.id.single_game_score_34);
+
+        final ImageView exitApp = (ImageView)getActivity().findViewById(R.id.tv_back);
+        exitApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
+
+        final ImageView refreshDb = (ImageView)getActivity().findViewById(R.id.tv_operation);
+        refreshDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         Button button = (Button)getActivity().findViewById(R.id.single_game_run);
         button.setOnClickListener(new View.OnClickListener() {
