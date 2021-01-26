@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChartsDemo.MainContent.LoginActivity">
+    tools:context=".BadmintonTools.LoginActivity">
 
     <include android:id="@+id/activity_title"
         layout="@layout/include_activity_title"/>

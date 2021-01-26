@@ -1,4 +1,4 @@
-package com.example.anan.AAChartCore.ChartsDemo.MainContent.fragment;
+package com.example.anan.AAChartCore.BadmintonTools.fragment;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

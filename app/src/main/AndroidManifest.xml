@@ -38,14 +38,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ChartsDemo.MainContent.CustomStyleChartActivity" />
         <activity android:name=".ChartsDemo.MainContent.MixedChartActivity" />
-        <activity android:name=".ChartsDemo.MainContent.Head2HeadActivity">
+<!--        <activity android:name=".BadmintonTools.Head2HeadActivity">-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".ChartsDemo.MainContent.LoginActivity"
+<!--        </activity>-->
+        <activity android:name=".BadmintonTools.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

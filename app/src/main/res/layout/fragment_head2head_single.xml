@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/qb_px_30"/>
 
-            <com.example.anan.AAChartCore.ChartsDemo.MainContent.ui.RoundImageView
+            <com.example.anan.AAChartCore.BadmintonTools.ui.RoundImageView
                 android:id="@+id/single_game_avatar_1"
                 android:scaleType="fitXY"
                 android:layout_width="@dimen/qb_px_60"
@@ -97,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/qb_px_30"/>
 
-            <com.example.anan.AAChartCore.ChartsDemo.MainContent.ui.RoundImageView
+            <com.example.anan.AAChartCore.BadmintonTools.ui.RoundImageView
                 android:id="@+id/single_game_avatar_4"
                 android:layout_width="@dimen/qb_px_60"
                 android:layout_height="@dimen/qb_px_90"
@@ -122,8 +122,17 @@
         android:layout_below="@+id/single_game_players"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </ListView>
+
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/single_game_players"
+        android:gravity="center"
+        android:paddingStart="@dimen/qb_px_20"
+        android:paddingEnd="@dimen/qb_px_20"
+        android:text="无交手记录，请确认运动员姓名拼写正确，或者重新导入数据~." />
 
 
 </RelativeLayout>

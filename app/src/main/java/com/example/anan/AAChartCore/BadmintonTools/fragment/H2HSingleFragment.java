@@ -1,6 +1,9 @@
-package com.example.anan.AAChartCore.ChartsDemo.MainContent.fragment;
+package com.example.anan.AAChartCore.BadmintonTools.fragment;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,15 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.anan.AAChartCore.ChartsDemo.MainContent.adapter.GameRecordAdapter;
-import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.DBUtil;
-import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.Game;
+import com.example.anan.AAChartCore.BadmintonTools.adapter.GameRecordAdapter;
+import com.example.anan.AAChartCore.BadmintonTools.data.DBUtil;
+import com.example.anan.AAChartCore.BadmintonTools.data.Game;
+import com.example.anan.AAChartCore.BadmintonTools.tool.FileChooseUtil;
+import com.example.anan.AAChartCore.BadmintonTools.tool.ReadExcelUtil;
 import com.example.anan.AAChartCore.R;
 
 import java.util.ArrayList;
@@ -47,12 +51,12 @@ public class H2HSingleFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        List<Game> games = new ArrayList<>();
-//        games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer("A");
-
         gameRecordAdapter = new GameRecordAdapter(data, getActivity());
         listView = (ListView)getActivity().findViewById(R.id.single_game_records);
         listView.setAdapter(gameRecordAdapter);
+
+        TextView emptyListView = (TextView) getActivity().findViewById(R.id.empty_view);
+        listView.setEmptyView(emptyListView);
 
         final AutoCompleteTextView textView1 = (AutoCompleteTextView) getActivity().findViewById(R.id.single_game_name_1);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,COUNTRIES);
@@ -77,7 +81,7 @@ public class H2HSingleFragment extends Fragment {
         refreshDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                chooseFile();
             }
         });
 
@@ -127,4 +131,47 @@ public class H2HSingleFragment extends Fragment {
             return false;
         }
     });
+
+    private static final int FILE_SELECT_CODE = 0;
+    private void chooseFile() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        try {
+            startActivityForResult(Intent.createChooser(intent, "选择文件"), FILE_SELECT_CODE);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Log.d("xxx", "亲，木有文件管理器啊-_-!!");
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String path;
+
+        if (resultCode == Activity.RESULT_OK) {
+            Uri uri = data.getData();
+            if ("file".equalsIgnoreCase(uri.getScheme())){//使用第三方应用打开
+                path = uri.getPath();
+
+                Log.d("xxx", "返回结果1: " + path);
+                return;
+            }
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {//4.4以后
+                path = FileChooseUtil.getPath(getActivity(), uri);
+
+                Log.d("xxx", "返回结果2: " + path);
+
+            } else {//4.4以下下系统调用方法
+                path = FileChooseUtil.getRealPathFromURI(uri);
+
+                Log.d("xxx", "返回结果3: " + path);
+
+            }
+
+            ReadExcelUtil.getInstance(getContext()).readExcel(path);
+        }
+    }
 }

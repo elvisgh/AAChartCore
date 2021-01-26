@@ -1,6 +1,5 @@
-package com.example.anan.AAChartCore.ChartsDemo.MainContent.fragment;
+package com.example.anan.AAChartCore.BadmintonTools.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,8 +12,6 @@ import com.example.anan.AAChartCore.AAChartCoreLib.AAChartCreator.AAChartModel;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartCreator.AAChartView;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartCreator.AASeriesElement;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartAnimationType;
-import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartSymbolStyleType;
-import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartSymbolType;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartType;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAChart;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AADataElement;
@@ -24,8 +21,8 @@ import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AASubtitle;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AATitle;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAXAxis;
 import com.example.anan.AAChartCore.AAChartCoreLib.AATools.AAJSStringPurer;
-import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.DBUtil;
-import com.example.anan.AAChartCore.ChartsDemo.MainContent.data.Game;
+import com.example.anan.AAChartCore.BadmintonTools.data.DBUtil;
+import com.example.anan.AAChartCore.BadmintonTools.data.Game;
 import com.example.anan.AAChartCore.R;
 
 import java.util.ArrayList;

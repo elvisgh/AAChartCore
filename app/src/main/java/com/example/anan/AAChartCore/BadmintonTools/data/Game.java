@@ -1,4 +1,4 @@
-package com.example.anan.AAChartCore.ChartsDemo.MainContent.data;
+package com.example.anan.AAChartCore.BadmintonTools.data;
 
 public class Game {
     public Game() {}
