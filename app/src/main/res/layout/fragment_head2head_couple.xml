@@ -28,7 +28,7 @@
                 android:layout_width="@dimen/qb_px_60"
                 android:layout_height="@dimen/qb_px_90"
                 android:scaleType="fitXY"
-                android:src="@drawable/player"/>
+                android:src="@drawable/avator_002"/>
 
             <AutoCompleteTextView
                 android:id="@+id/couple_game_name_1"
@@ -58,7 +58,7 @@
                 android:layout_width="@dimen/qb_px_60"
                 android:layout_height="@dimen/qb_px_90"
                 android:scaleType="fitXY"
-                android:src="@drawable/player"/>
+                android:src="@drawable/avator_002"/>
 
             <AutoCompleteTextView
                 android:id="@+id/couple_game_name_2"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toStartOf="@id/couple_game_separator"
                 android:textSize="30sp"
-                android:hint="00"
+                android:hint="0"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/couple_game_separator"
                 android:textSize="30sp"
-                android:hint="00"
+                android:hint="0"
                 tools:ignore="HardcodedText" />
 
             <Button
@@ -132,7 +132,7 @@
                 android:layout_width="@dimen/qb_px_60"
                 android:layout_height="@dimen/qb_px_90"
                 android:scaleType="fitXY"
-                android:src="@drawable/player"/>
+                android:src="@drawable/avator_002"/>
 
             <AutoCompleteTextView
                 android:id="@+id/couple_game_name_3"
@@ -162,7 +162,7 @@
                 android:layout_width="@dimen/qb_px_60"
                 android:layout_height="@dimen/qb_px_90"
                 android:scaleType="fitXY"
-                android:src="@drawable/player"/>
+                android:src="@drawable/avator_002"/>
 
             <AutoCompleteTextView
                 android:id="@+id/couple_game_name_4"
@@ -183,14 +183,14 @@
     </ListView>
 
     <TextView
-        android:id="@+id/empty_view"
+        android:id="@+id/empty_view_couple"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/couple_game_players"
         android:gravity="center"
         android:paddingStart="@dimen/qb_px_20"
         android:paddingEnd="@dimen/qb_px_20"
-        android:text="无交手记录，请确认运动员姓名拼写正确，或者重新导入数据~." />
+        android:text="无更多记录，请刷新或者重新导入数据~" />
 
 
 </RelativeLayout>

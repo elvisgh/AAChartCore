@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,6 +24,7 @@ import com.example.anan.AAChartCore.BadmintonTools.data.DBUtil;
 import com.example.anan.AAChartCore.BadmintonTools.data.Game;
 import com.example.anan.AAChartCore.BadmintonTools.tool.FileChooseUtil;
 import com.example.anan.AAChartCore.BadmintonTools.tool.ReadExcelUtil;
+import com.example.anan.AAChartCore.BadmintonTools.tool.SharedPreferenceUtil;
 import com.example.anan.AAChartCore.R;
 
 import java.util.ArrayList;
@@ -36,9 +35,7 @@ public class H2HSingleFragment extends Fragment {
     List<String> data = new ArrayList<>();
     GameRecordAdapter gameRecordAdapter;
 
-    private static final String[] COUNTRIES = new String[]{
-            "杰斯","露露","罗乾","云儿"
-    };
+    List<String> players = new ArrayList<>();
 
     TextView score_12, score_34;
     @Override
@@ -51,20 +48,22 @@ public class H2HSingleFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        players = SharedPreferenceUtil.getList("players");
+
         gameRecordAdapter = new GameRecordAdapter(data, getActivity());
         listView = (ListView)getActivity().findViewById(R.id.single_game_records);
         listView.setAdapter(gameRecordAdapter);
 
-        TextView emptyListView = (TextView) getActivity().findViewById(R.id.empty_view);
+        TextView emptyListView = (TextView) getActivity().findViewById(R.id.empty_view_single);
         listView.setEmptyView(emptyListView);
 
-        final AutoCompleteTextView textView1 = (AutoCompleteTextView) getActivity().findViewById(R.id.single_game_name_1);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,COUNTRIES);
-        textView1.setAdapter(adapter1);
+        final AutoCompleteTextView playerName1 = (AutoCompleteTextView) getActivity().findViewById(R.id.single_game_name_1);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, players);
+        playerName1.setAdapter(adapter1);
 
-        final AutoCompleteTextView textView4 = (AutoCompleteTextView) getActivity().findViewById(R.id.single_game_name_4);
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,COUNTRIES);
-        textView4.setAdapter(adapter4);
+        final AutoCompleteTextView playerName4 = (AutoCompleteTextView) getActivity().findViewById(R.id.single_game_name_4);
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, players);
+        playerName4.setAdapter(adapter4);
 
         score_12 = (TextView)getActivity().findViewById(R.id.single_game_score_12);
         score_34 = (TextView)getActivity().findViewById(R.id.single_game_score_34);
@@ -90,20 +89,20 @@ public class H2HSingleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 List<Game> games = new ArrayList<>();
-                games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer(textView1.getText().toString());
+                games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer(playerName1.getText().toString());
 
                 int aWinCount = 0;
                 int dWinCount = 0;
 
                 data.clear();
-                List<String> data1 = new ArrayList<>();
+                List<String> tempRecords = new ArrayList<>();
 
-                Log.i("xxx", textView1.getText().toString() + textView4.getText().toString());
+                Log.i("xxx", playerName1.getText().toString() + playerName4.getText().toString());
                 for (Game game : games) {
-                    if ((game.getPlayer_1().equals(textView1.getText().toString()) || game.getPlayer_2().equals(textView1.getText().toString()))
-                            && (game.getPlayer_3().equals(textView4.getText().toString()) || game.getPlayer_4().equals(textView4.getText().toString()))) {
+                    if ((game.getPlayer_1().equals(playerName1.getText().toString()) || game.getPlayer_2().equals(playerName1.getText().toString()))
+                            && (game.getPlayer_3().equals(playerName4.getText().toString()) || game.getPlayer_4().equals(playerName4.getText().toString()))) {
                         Log.i("xxx", game.toString());
-                        data1.add(game.toString());
+                        tempRecords.add(game.toString());
                         if (game.getScore_12() > game.getScore_34()) {
                             aWinCount++;
                         } else {
@@ -111,26 +110,15 @@ public class H2HSingleFragment extends Fragment {
                         }
                     }
                 }
-                data.addAll(data1);
+                data.addAll(tempRecords);
                 Log.i("xxx", "胜率: A " + aWinCount + " : " + dWinCount + " C");
                 score_12.setText(aWinCount+"");
                 score_34.setText(dWinCount+"");
 
-                handler.sendEmptyMessage(1);
+                gameRecordAdapter.notifyDataSetChanged();
             }
         });
     }
-
-    Handler handler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message message) {
-            if (1 == message.what) {
-                gameRecordAdapter.notifyDataSetChanged();
-            }
-
-            return false;
-        }
-    });
 
     private static final int FILE_SELECT_CODE = 0;
     private void chooseFile() {

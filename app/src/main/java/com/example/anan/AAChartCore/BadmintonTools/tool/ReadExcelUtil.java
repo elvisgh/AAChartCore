@@ -16,6 +16,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadExcelUtil {
     private static Context context;
@@ -32,7 +34,7 @@ public class ReadExcelUtil {
         return util;
     }
 
-    @Deprecated
+
     public void readExcel(String fileName) {
         try {
             InputStream inputStream = new FileInputStream(fileName);
@@ -42,6 +44,7 @@ public class ReadExcelUtil {
             } else if (fileName.endsWith(".xlsx")) {
                 workbook = new XSSFWorkbook(inputStream);
             } else {
+                Log.i("xxx", "文件格式不对，非.xls或.xlsx");
                 return;
             }
             Sheet sheet = workbook.getSheetAt(0);
@@ -53,33 +56,38 @@ public class ReadExcelUtil {
                 DBUtil.GameDBManager.getInstance().deleteAllGameRecord();
             }
 
+            List<String> players = new ArrayList<>();
+
             for (int r = 0; r < rowsCount; r++) {
                 Row row = sheet.getRow(r);
                 int cellsCount = row.getPhysicalNumberOfCells();//每行单元格数
-                Log.i("xxx", "cells of row:" + cellsCount);
+                Log.i("xxx", "cells of row: " + cellsCount);
+                Log.i("xxx", "content of row: " + row.toString());
 
                 Game game = new Game();
 
-                Log.i("xxx", "readExcel:" + row.getCell(0).getStringCellValue());
                 game.setPlayer_1(row.getCell(0).getStringCellValue());
-                Log.i("xxx", "readExcel:" + row.getCell(1).getStringCellValue());
                 game.setPlayer_2(row.getCell(1).getStringCellValue());
 
-                Log.i("xxx", "readExcel:" + row.getCell(2).getNumericCellValue());
                 game.setScore_12((int)row.getCell(2).getNumericCellValue());
-                Log.i("xxx", "readExcel:" + row.getCell(3).getNumericCellValue());
                 game.setScore_34((int)row.getCell(3).getNumericCellValue());
 
-                Log.i("xxx", "readExcel:" + row.getCell(4).getStringCellValue());
                 game.setPlayer_3(row.getCell(4).getStringCellValue());
-                Log.i("xxx", "readExcel:" + row.getCell(5).getStringCellValue());
                 game.setPlayer_4(row.getCell(5).getStringCellValue());
 
-                Log.i("xxx", "readExcel:" + row.getCell(6).getNumericCellValue());
                 game.setGameDate((int)row.getCell(6).getNumericCellValue());
 
                 DBUtil.GameDBManager.getInstance().addGameRecord(game, 100);
+
+                //在这里录入运动员数据 TODO
+                if (!players.contains(game.getPlayer_1())) players.add(game.getPlayer_1());
+                if (!players.contains(game.getPlayer_2())) players.add(game.getPlayer_2());
+                if (!players.contains(game.getPlayer_3())) players.add(game.getPlayer_3());
+                if (!players.contains(game.getPlayer_4())) players.add(game.getPlayer_4());
             }
+
+            SharedPreferenceUtil.setList("players", players);
+
             workbook.close();
         } catch (IOException e) {
             e.printStackTrace();

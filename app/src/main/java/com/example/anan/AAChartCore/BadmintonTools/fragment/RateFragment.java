@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,20 @@ import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartStackingTy
 import com.example.anan.AAChartCore.AAChartCoreLib.AAChartEnum.AAChartType;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAOptions;
 import com.example.anan.AAChartCore.AAChartCoreLib.AAOptionsModel.AAScrollablePlotArea;
+import com.example.anan.AAChartCore.BadmintonTools.data.DBUtil;
+import com.example.anan.AAChartCore.BadmintonTools.data.Game;
+import com.example.anan.AAChartCore.BadmintonTools.tool.SharedPreferenceUtil;
 import com.example.anan.AAChartCore.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RateFragment extends Fragment {
+    List<String> players = new ArrayList<>();
+
+    List<Integer> netScores = new ArrayList<>();
+    List<Integer> wins = new ArrayList<>();
+    List<Integer> loses = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,6 +40,26 @@ public class RateFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        players = SharedPreferenceUtil.getList("players");
+
+        List<Game> games;
+        for (String i : players) {
+            games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer(i);
+
+            int winNum = 0, loseNum = 0;
+            for (Game game : games) {
+                if  (game.getScore_12() > game.getScore_34()) {
+                    winNum++;
+                } else {
+                    loseNum++;
+                }
+            }
+
+            netScores.add(winNum - loseNum);
+            wins.add(winNum);
+            loses.add(loseNum);
+        }
 
         AAOptions aaOptions = customStackedAndGroupedColumnChartTooltip();
 
@@ -48,28 +80,23 @@ public class RateFragment extends Fragment {
                         new AAScrollablePlotArea()
                                 .minWidth(1000)
                 )
-                .categories(new String[]{"杰斯","露露","罗乾","云儿"})
+                .categories(players.toArray(new String[0]))
                 .dataLabelsEnabled(true)
                 .series(new AASeriesElement[] {
                                 new AASeriesElement()
-                                        .name("正负值")
-                                        .data(new Object[]{5,3,4,7,2})
-                                        .stack("male")
-//                                ,
-//                                new AASeriesElement()
-//                                        .name("Joe")
-//                                        .data(new Object[]{3,4,4,2,5,})
-//                                        .stack("male")
+                                        .name("净胜分")
+                                        .data(netScores.toArray())
+                                        .stack("netScores")
                                 ,
                                 new AASeriesElement()
                                         .name("胜局")
-                                        .data(new Object[]{2,5,6,2})
-                                        .stack("female")
+                                        .data(wins.toArray())
+                                        .stack("wins")
                                 ,
                                 new AASeriesElement()
                                         .name("败局")
-                                        .data(new Object[]{3,0,4,4})
-                                        .stack("female")
+                                        .data(loses.toArray())
+                                        .stack("loses")
                                 ,
                         }
                 );
