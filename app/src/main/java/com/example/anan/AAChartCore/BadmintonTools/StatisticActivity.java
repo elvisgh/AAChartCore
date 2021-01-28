@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.example.anan.AAChartCore.BadmintonTools.data.DBUtil;
 import com.example.anan.AAChartCore.BadmintonTools.fragment.H2HCoupleFragment;
@@ -92,6 +93,9 @@ public class StatisticActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(onGroupBottomNavigationMenuSelectedListener);
         //设置默认项目
         navigation.setSelectedItemId(R.id.bottom_single);
+
+        //默认关闭软键盘
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     /*Forbid physic back keycode*/

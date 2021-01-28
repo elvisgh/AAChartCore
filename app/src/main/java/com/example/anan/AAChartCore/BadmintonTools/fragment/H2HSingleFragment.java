@@ -111,7 +111,7 @@ public class H2HSingleFragment extends Fragment {
                     }
                 }
                 data.addAll(tempRecords);
-                Log.i("xxx", "胜率: A " + aWinCount + " : " + dWinCount + " C");
+
                 score_12.setText(aWinCount+"");
                 score_34.setText(dWinCount+"");
 

@@ -82,7 +82,10 @@ public class H2HCoupleFragment extends Fragment {
 
                 gameRecords.clear();
                 List<String> tempRecords = new ArrayList<>();
-                Log.i("xxx", playerName1.getText().toString() + playerName4.getText().toString());
+                Log.i("xxx", playerName1.getText().toString()
+                        + playerName2.getText().toString()
+                        + playerName3.getText().toString()
+                        + playerName4.getText().toString());
                 for (Game game : games) {
 
                     if ((game.getPlayer_1().equals(playerName1.getText().toString()) || game.getPlayer_2().equals(playerName1.getText().toString()))
@@ -101,7 +104,6 @@ public class H2HCoupleFragment extends Fragment {
 
                 gameRecords.addAll(tempRecords);
 
-                Log.i("xxx", "胜率: AB " + aWinCount + " : " + dWinCount + " CD");
                 score_12.setText(aWinCount+"");
                 score_34.setText(dWinCount+"");
 

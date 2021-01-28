@@ -49,7 +49,7 @@ public class ReadExcelUtil {
             }
             Sheet sheet = workbook.getSheetAt(0);
             int rowsCount = sheet.getPhysicalNumberOfRows();
-            Log.i("xxx", "rows" + rowsCount);
+            Log.i("xxx", "rows of sheet: " + rowsCount);
             FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
 
             if (rowsCount > 0) {
@@ -62,7 +62,6 @@ public class ReadExcelUtil {
                 Row row = sheet.getRow(r);
                 int cellsCount = row.getPhysicalNumberOfCells();//每行单元格数
                 Log.i("xxx", "cells of row: " + cellsCount);
-                Log.i("xxx", "content of row: " + row.toString());
 
                 Game game = new Game();
 
@@ -78,6 +77,7 @@ public class ReadExcelUtil {
                 game.setGameDate((int)row.getCell(6).getNumericCellValue());
 
                 DBUtil.GameDBManager.getInstance().addGameRecord(game, 100);
+                Log.i("xxx", "content of row: " + game.toString());
 
                 //在这里录入运动员数据 TODO
                 if (!players.contains(game.getPlayer_1())) players.add(game.getPlayer_1());
