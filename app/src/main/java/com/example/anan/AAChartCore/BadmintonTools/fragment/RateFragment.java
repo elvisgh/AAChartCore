@@ -41,6 +41,7 @@ public class RateFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //获取数据
         players = SharedPreferenceUtil.getList("players");
 
         List<Game> games;
@@ -61,6 +62,7 @@ public class RateFragment extends Fragment {
             loses.add(loseNum);
         }
 
+        //绘制图表
         AAOptions aaOptions = customStackedAndGroupedColumnChartTooltip();
 
         AAChartView aaChartView = getActivity().findViewById(R.id.AAChartView);

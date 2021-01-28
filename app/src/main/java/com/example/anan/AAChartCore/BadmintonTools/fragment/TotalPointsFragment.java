@@ -28,13 +28,18 @@ import com.example.anan.AAChartCore.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TotalPointsFragment extends Fragment {
     private AAChartView aaChartView1;
     private AAChartModel aaChartModel;
     private AAOptions aaOptions;
-    Object[][] datas = new Object[10][];
+    LinkedHashMap<String, Integer> playerScoresMap = new LinkedHashMap<>();
+    Object[][] datas;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,6 +50,40 @@ public class TotalPointsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //获取数据
+        List<String> registerdPlayers = SharedPreferenceUtil.getList("players");
+
+        for (String player : registerdPlayers) {
+            List<Game> games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer(player);
+
+            int totalScore = 0;
+            for (Game game : games) {
+                totalScore += game.getScore_12();
+            }
+            playerScoresMap.put(player, totalScore);
+        }
+
+        // 通过ArrayList构造函数把map.entrySet()转换成list
+        List<LinkedHashMap.Entry<String, Integer>> list = new ArrayList<>(playerScoresMap.entrySet());
+        // 通过比较器实现比较排序
+        Collections.sort(list, new Comparator<LinkedHashMap.Entry<String, Integer>>() {
+
+            @Override
+            public int compare(LinkedHashMap.Entry<String, Integer> t1, LinkedHashMap.Entry<String, Integer> t2) {
+                return t2.getValue().compareTo(t1.getValue());
+            }
+        });
+
+        int row = 0;
+        int rowCount = list.size();
+        datas = new Object[rowCount][];
+
+        for (LinkedHashMap.Entry<String, Integer> set : list) {
+            datas[row++] = new Object[]{set.getKey(), set.getValue()};
+        }
+        row = 0;
+
+        //绘制图表
         aaChartView1 = getActivity().findViewById(R.id.AAChartView1);
 
         AAChartModel aaChartModel = configureChartModel();
@@ -53,20 +92,6 @@ public class TotalPointsFragment extends Fragment {
         }
 
         aaChartView1.aa_drawChartWithChartOptions(aaOptions);
-
-        List<String> registerdPlayers = SharedPreferenceUtil.getList("players");
-
-
-        int row = 0;
-        for (String player : registerdPlayers) {
-            List<Game> games = DBUtil.GameDBManager.getInstance().getGameRecordByPlayer(player);
-
-            int totalScore = 0;
-            for (Game game : games) {
-                totalScore += game.getScore_12();
-            }
-            datas[row++] = new Object[]{player, totalScore};
-        }
     }
 
 
